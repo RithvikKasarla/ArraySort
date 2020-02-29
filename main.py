@@ -5,9 +5,9 @@ arr = []
 for i in range(5000000):
   arr.append(randint(0, 1000000))
 
-#Equal in array size 50000 & max 50000
-#Better in array size 500000 & max 100000
-#Looses Horrribly at size 5000000 & max 1000000
+#Equal to quicksort in array size 50000 & max 50000
+#Better than quicksort in array size 500000 & max 100000
+#Looses Horrribly to quicksort at size 5000000 & max 1000000
 
 def partition(arr,low,high): 
     i = ( low-1 )        
