@@ -1,59 +1,56 @@
 def remove_copys(ar):
-  copy = ar
-  doubs = {}
-  for idx, x in enumerate(ar):
-    if x in doubs:
-      doubs[x] += 1
+  occurances = {}
+  for x in ar:
+    if x in occurances:
+      occurances[x] += 1
     else:
-      doubs[x] = 1
+      occurances[x] = 1
 
-  return list(set(copy)),doubs
+  return list(set(ar)),occurances
 
-def arraySort(x_b):
-  x,occur = remove_copys(x_b)
-  s = 0
+def arraySort(unsorted_array):
+  uniqueArray,occur = remove_copys(unsorted_array)
+  mean = 0
   pos = []
   neg = []
    
-  for el in x:
-    s += el
-  s= int(s/len(x))
+  for el in uniqueArray:
+    mean += el
+  mean= int(mean / len(uniqueArray ) )
 
-  for el in range(0,len(x)):
-    x[el] = x[el]-s
-    if x[el] >=0:
-      pos.append(x[el])
+  for el in range(0,len(uniqueArray)):
+    uniqueArray[el] = uniqueArray[el]-mean
+    if uniqueArray[el] >=0:
+      pos.append(uniqueArray[el])
     else:
-      neg.append(x[el])
+      neg.append(uniqueArray[el])
 
-  #mp = max(pos)
-  pm = min(pos)
+  smallestPositiveEl = min(pos)
 
-  mn = max(neg)
-  #nm = min(neg)
+  largestNegativeEl = max(neg)
   
-  pos_f = [None] * int(max(pos) - pm + 1)
-  neg_f = [None] * (int(min(neg) + mn - 1) * -1)
+  pos_arr = [None] * int(max(pos) - smallestPositiveEl + 1)
+  neg_arr = [None] * (int(min(neg) + largestNegativeEl - 1) * -1)
 
   for z in range(len(pos)):
-    pos_f[pos[z] - pm] = pos[z] - pm
+    pos_arr[pos[z] - smallestPositiveEl] = pos[z] - smallestPositiveEl
 
   for y in range(len(neg)):
-    neg_f[neg[y] + mn] = neg[y] + mn
+    neg_arr[neg[y] + largestNegativeEl] = neg[y] + largestNegativeEl
 
-  neg_f = list(filter(None.__ne__, neg_f))
-  pos_f = list(filter(None.__ne__, pos_f))
+  neg_arr = list(filter(None.__ne__, neg_arr))
+  pos_arr = list(filter(None.__ne__, pos_arr))
 
-  final = []
-  for x in pos_f:
-    final.append(x + s + pm)
+  sortedUnique = []
+  for number in pos_arr:
+    sortedUnique.append(number + mean + smallestPositiveEl)
   
-  for y in reversed(neg_f):
-    final.insert(0, y + s - mn)
+  for number in reversed(neg_arr):
+    sortedUnique.insert(0, number + mean - largestNegativeEl)
 
-  trueFinal = []
-  for f in final:
-    trueFinal += [f] * occur[f]
-  return (trueFinal)
+  SortedArr = []
+  for f in sortedUnique:
+    SortedArr += [f] * occur[f]
+  return (SortedArr)
 
 
