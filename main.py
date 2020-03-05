@@ -36,16 +36,16 @@ for runs in range(10):
     ## Can be used as the fastest string sorting algorithm
     arr_copy = arr.copy()
     start_time = time.time()
-    arraySort(arr_copy) ## can take up to 8 zeroes 
+    arraySort(arr_copy) 
     end = time.time()
     print(end - start_time)
 
     print("QuickSort")
     start_time = time.time()
-    quickSort(arr_copy,0,len(arr_copy)-1) ## can take up to 8 zeroes 
+    quickSort(arr_copy,0,len(arr_copy)-1) 
     end = time.time()
     print(end - start_time)
-    
+
 """
 import string 
 import random
