@@ -38,19 +38,12 @@ def arraySort(unsorted_array):
   for y in range(len(neg)):
     neg_arr[neg[y] + largestNegativeEl] = neg[y] + largestNegativeEl
 
-  neg_arr = list(filter(None.__ne__, neg_arr))
-  pos_arr = list(filter(None.__ne__, pos_arr))
-
-  sortedUnique = []
-  for number in pos_arr:
-    sortedUnique.append(number + mean + smallestPositiveEl)
-  
   for number in reversed(neg_arr):
-    sortedUnique.insert(0, number + mean - largestNegativeEl)
-
-  SortedArr = []
-  for f in sortedUnique:
-    SortedArr += [f] * occur[f]
+    if number != None:
+      SortedArr = [number + mean - largestNegativeEl] * occur[number + mean - largestNegativeEl]
+  for number in pos_arr:
+    if number != None:
+      SortedArr = [number + mean + smallestPositiveEl] * occur[number + mean + smallestPositiveEl]
   return (SortedArr)
 
 
