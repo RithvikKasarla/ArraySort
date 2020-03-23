@@ -1,6 +1,5 @@
 import time
 from arraySort import arraySort
-from Betterarraysort import BetterarraySort
 from Char_arraysort import arraySortStrings
 from random import randint
 
@@ -27,8 +26,9 @@ def quickSort(arr,low,high):
         quickSort(arr, pi+1, high)
 
 arr = []
-for i in range(500000):
+for i in range(5000000):
   arr.append(randint(0, 10000000))
+
 for runs in range(10):
     print("Trial #", runs+1,"----------------------")
 
@@ -42,7 +42,7 @@ for runs in range(10):
 
     print("QuickSort")
     start_time = time.time()
-    BetterarraySort(arr_copy) 
+    quickSort(arr_copy,0,len(arr_copy)-1) 
     end = time.time()
     print(end - start_time)
 
